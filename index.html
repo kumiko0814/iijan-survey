@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>どっちが「いいな」？｜Merone 1分アンケート</title>
-<meta property="og:title" content="どっちが「いいな」？｜Merone 1分アンケート">
-<meta property="og:description" content="2つのことばから、ピンときた方をタップするだけ。全部で11回・約1分です。">
-<meta property="og:image" content="https://kumiko0814.github.io/iijan-survey/ogp.png">
+<title>どれが「いいな」？｜Merone 1分アンケート</title>
+<meta property="og:title" content="どれが「いいな」？｜Merone 1分アンケート">
+<meta property="og:description" content="12個のことばから、ピンときたものを2つ選ぶだけ。約1分のアンケートです。">
+<meta property="og:image" content="https://kumiko0814.github.io/iijan-survey/ogp.png?v=2">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <style>
@@ -27,15 +27,15 @@ body{
   background:linear-gradient(180deg,#fdf1f4 0%,#fbe9ee 55%,#f3f0f7 100%);
   min-height:100vh;
   color:var(--ink); line-height:1.85; letter-spacing:.01em;
-  font-family:-apple-system,BlinkMacSystemFont,"Yu Gothic","YuGothic","游ゴシック","Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+  font-family:"Yu Gothic","YuGothic","游ゴシック",-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
   display:flex; justify-content:center; overflow-x:hidden; word-break:keep-all; overflow-wrap:anywhere;
   -webkit-font-smoothing:antialiased; -webkit-overflow-scrolling:touch;
 }
-@supports (font-family:"Yu Gothic"){ body{font-family:"Yu Gothic","YuGothic","游ゴシック",-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;} }
 img{max-width:100%; height:auto;}
 button{font-family:inherit;}
 [hidden]{display:none !important;}
-.app{width:100%; max-width:480px; min-height:100vh; position:relative; padding-bottom:84px;}
+.app{width:100%; max-width:480px; min-height:100vh; position:relative; padding-bottom:28px;}
+.app.withbar{padding-bottom:112px;}
 .nw{white-space:nowrap;}
 .stmt{word-break:keep-all; overflow-wrap:anywhere; line-break:strict;}
 .stmt .seg{white-space:nowrap;}
@@ -50,7 +50,7 @@ button{font-family:inherit;}
 
 .card{background:var(--paper); border:1px solid var(--line); border-radius:20px; box-shadow:var(--shadow);}
 
-/* intro */
+/* title + hero */
 .title{padding:22px 16px 6px; text-align:center;}
 .title .en{font-size:10px; letter-spacing:.4em; color:#a98bc9; font-weight:800; padding-left:.4em;}
 .title h1{font-size:22px; color:var(--plum2); letter-spacing:.04em; line-height:1.5; margin-top:2px;}
@@ -65,90 +65,69 @@ button{font-family:inherit;}
 .hero .msg p + p{margin-top:6px;}
 .hero .from{font-size:10.5px; color:var(--sub); margin-top:8px; text-align:right;}
 
-.flow{display:flex; gap:8px; padding:14px 16px 4px;}
-.flow .f{flex:1; background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:12px 6px 10px; text-align:center;
-  box-shadow:0 10px 22px -18px rgba(87,74,88,.35);}
-.flow .n{width:26px; height:26px; margin:0 auto 6px; border-radius:999px; color:#fff; font-weight:800; font-size:12.5px;
-  display:flex; align-items:center; justify-content:center; background:var(--grad);}
-.flow .f:nth-child(2) .n{background:var(--grad-r);}
-.flow .f:nth-child(3) .n{background:var(--grad-lav);}
-.flow b{display:block; font-size:11.5px; color:var(--plum2); line-height:1.55; word-break:keep-all;}
-.flow s{display:block; text-decoration:none; font-size:10px; color:var(--sub); margin-top:3px;}
+/* character + bubble */
+.stage{display:flex; align-items:flex-end; justify-content:center; gap:4px; padding:14px 16px 0;}
+.bubble{position:relative; background:var(--paper); border:1.5px solid var(--pink); border-radius:18px;
+  padding:12px 14px; font-size:13.5px; font-weight:800; color:var(--plum2); line-height:1.7; max-width:220px; box-shadow:var(--shadow);}
+.bubble::after{content:""; position:absolute; right:-9px; bottom:18px; width:14px; height:14px; background:var(--paper);
+  border-right:1.5px solid var(--pink); border-top:1.5px solid var(--pink); transform:rotate(45deg);}
+.stage .bubble{margin-bottom:52px;}
+.stage img{height:170px; width:auto; display:block; filter:drop-shadow(0 10px 14px rgba(198,111,150,.22));}
+.bubble em{font-style:normal; color:var(--pinkd);}
 
-.chips{display:flex; gap:6px; padding:12px 16px 0; flex-wrap:wrap; justify-content:center;}
+.chips{display:flex; gap:6px; padding:10px 16px 0; flex-wrap:wrap; justify-content:center;}
 .chips i{font-style:normal; font-size:11px; font-weight:700; color:var(--plum);
   background:var(--paper); border:1px solid var(--line); border-radius:999px; padding:4px 12px; white-space:nowrap;}
 
-.stage{display:flex; align-items:flex-end; justify-content:center; gap:4px; padding:18px 16px 0;}
-.stage .bubble{position:relative; background:var(--paper); border:1.5px solid var(--pink); border-radius:18px;
-  padding:12px 14px; font-size:13px; font-weight:800; color:var(--plum2); line-height:1.7; margin-bottom:62px; max-width:220px;
-  box-shadow:var(--shadow); word-break:keep-all;}
-.stage .bubble::after{content:""; position:absolute; right:-9px; bottom:18px; width:14px; height:14px; background:var(--paper);
-  border-right:1.5px solid var(--pink); border-top:1.5px solid var(--pink); transform:rotate(45deg);}
-.stage img{height:200px; width:auto; display:block; filter:drop-shadow(0 10px 14px rgba(198,111,150,.22));}
+/* list */
+.list{padding:16px 16px 0; display:flex; flex-direction:column; gap:10px;}
+.opt{position:relative; display:flex; align-items:center; gap:12px; width:100%; text-align:left; cursor:pointer;
+  background:var(--paper); border:2px solid var(--line); border-radius:18px; padding:14px; min-height:72px;
+  color:var(--plum2); font-size:15.5px; font-weight:800; line-height:1.75; letter-spacing:.02em;
+  box-shadow:0 10px 22px -18px rgba(87,74,88,.4); transition:border-color .18s, background .18s, transform .15s;}
+.opt:active{transform:scale(.99);}
+.opt .ck{flex:none; width:26px; height:26px; border-radius:999px; border:2px solid #e6d3de; background:#fff;
+  display:flex; align-items:center; justify-content:center; transition:all .18s;}
+.opt .ck svg{opacity:0; transition:opacity .15s;}
+.opt .stmt{flex:1; min-width:0;}
+.opt.on{border-color:var(--pink); background:#fffafc;}
+.opt.on .ck{background:var(--grad); border-color:transparent; box-shadow:0 4px 10px rgba(185,139,234,.4);}
+.opt.on .ck svg{opacity:1;}
+.opt.shake{animation:shake .32s;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 
-.cta{padding:6px 16px 4px;}
-.btn{display:block; width:100%; border:none; cursor:pointer; padding:17px; border-radius:16px;
-  font-size:16px; font-weight:800; letter-spacing:.08em;
+/* bottom bar */
+.bar{position:fixed; left:0; right:0; bottom:0; z-index:30; display:flex; justify-content:center;
+  background:rgba(255,255,255,.96); border-top:1px solid var(--line); box-shadow:0 -10px 24px -18px rgba(87,74,88,.45);}
+.bar .in{width:100%; max-width:480px; display:flex; align-items:center; gap:12px;
+  padding:10px 16px 10px; padding-bottom:calc(10px + env(safe-area-inset-bottom));}
+.bar .cnt{flex:none; text-align:center; line-height:1.2; min-width:62px;}
+.bar .cnt b{font-size:22px; color:var(--pinkd);}
+.bar .cnt span{font-size:12px; font-weight:800; color:var(--plum);}
+.bar .cnt small{display:block; font-size:10px; color:var(--sub); font-weight:700; margin-top:2px;}
+.bar .btn{flex:1; padding:14px 10px; font-size:15px;}
+.bar .warn{flex:1; font-size:12.5px; font-weight:800; color:var(--pinkd); text-align:center; line-height:1.6;}
+
+.btn{display:block; width:100%; border:none; cursor:pointer; padding:16px; border-radius:16px;
+  font-size:16px; font-weight:800; letter-spacing:.06em;
   background:var(--grad); color:#fff; box-shadow:0 10px 24px rgba(185,139,234,.35);}
 .btn:active{transform:translateY(1px);}
-.btn[disabled]{opacity:.6; cursor:default;}
+.btn[disabled]{background:#efe4ea; color:#a8959f; box-shadow:none; cursor:default; transform:none;}
 .btn.sub{background:var(--paper); color:var(--pinkd); border:1.5px solid var(--pink); box-shadow:none; font-size:14px; padding:13px;}
-.note{text-align:center; font-size:11px; color:var(--sub); margin-top:8px; line-height:1.8;}
-
-/* play */
-.prog{position:sticky; top:55px; z-index:19; padding:10px 14px 6px;
-  background:linear-gradient(180deg,#fdf1f4 70%,rgba(253,241,244,0));}
-.prog .pill{background:rgba(255,255,255,.96); border:1px solid var(--line); border-radius:999px;
-  padding:8px 16px; display:flex; align-items:center; gap:10px; box-shadow:0 8px 20px -12px rgba(87,74,88,.35);}
-.prog .lbl{font-size:11px; font-weight:800; color:#fff; background:var(--grad-lav); border-radius:999px; padding:2px 10px; white-space:nowrap;}
-.prog .bar{flex:1; height:8px; border-radius:20px; background:#f6e7ef; overflow:hidden;}
-.prog .fill{height:100%; width:0%; background:linear-gradient(90deg,var(--blue),var(--pink)); border-radius:20px; transition:width .35s;}
-.prog .cnt{font-size:11px; font-weight:800; color:var(--plum); white-space:nowrap;}
-
-.ask{display:flex; align-items:center; gap:10px; padding:10px 18px 4px;}
-.ask .ava{width:48px; height:48px; border-width:2px;}
-.ask .q{flex:1; min-width:0;}
-.ask .q b{display:block; font-size:18px; color:var(--plum2); letter-spacing:.03em; line-height:1.5;}
-.ask .q span{display:block; font-size:11.5px; color:var(--pinkd); font-weight:700; margin-top:1px;}
-
-.duel{padding:12px 16px 0;}
-.choice{position:relative; display:flex; align-items:center; width:100%; min-height:132px; text-align:left; cursor:pointer;
-  background:var(--paper); border:2px solid var(--line); border-radius:20px; padding:24px 20px 20px;
-  color:var(--plum2); font-size:17px; font-weight:800; line-height:1.8; letter-spacing:.02em;
-  box-shadow:var(--shadow); transition:transform .18s, opacity .25s, border-color .2s;}
-.choice:active{transform:scale(.985);}
-.choice .tag{position:absolute; top:-11px; left:16px; font-size:10.5px; font-weight:800; letter-spacing:.18em; color:#fff;
-  background:var(--grad); border-radius:999px; padding:2px 12px 2px 13px;}
-.choice.b .tag{background:var(--grad-lav);}
-.choice .chk{position:absolute; top:-12px; right:14px; width:30px; height:30px; border-radius:999px; background:var(--grad);
-  display:flex; align-items:center; justify-content:center; opacity:0; transform:scale(.4); transition:all .22s;
-  box-shadow:0 6px 14px rgba(185,139,234,.4);}
-.choice.picked{border-color:var(--pink); background:#fffafc; transform:scale(1.015);}
-.choice.picked .chk{opacity:1; transform:scale(1);}
-.choice.dim{opacity:.4;}
-.or{display:flex; align-items:center; justify-content:center; height:40px;}
-.or i{font-style:normal; width:36px; height:36px; border-radius:999px; background:var(--paper); border:1.5px solid var(--line);
-  display:flex; align-items:center; justify-content:center; font-size:11.5px; font-weight:800; color:var(--sub); letter-spacing:.06em;}
-.back{display:block; margin:16px auto 0; background:none; border:none; color:var(--sub); font-size:12px; font-weight:700; padding:8px 12px; cursor:pointer;}
-.hint{text-align:center; font-size:11px; color:var(--sub); margin-top:4px;}
 
 /* done */
 .thanks{display:flex; align-items:flex-end; gap:4px; padding:18px 16px 0; justify-content:center;}
 .thanks img{height:180px; width:auto; display:block; filter:drop-shadow(0 10px 14px rgba(198,111,150,.22));}
-.thanks .bubble{position:relative; background:var(--paper); border:1.5px solid var(--pink); border-radius:18px; padding:12px 14px;
-  font-size:13.5px; font-weight:800; color:var(--plum2); line-height:1.7; margin-bottom:70px; max-width:210px; box-shadow:var(--shadow); word-break:keep-all;}
-.thanks .bubble::after{content:""; position:absolute; right:-9px; bottom:18px; width:14px; height:14px; background:var(--paper);
-  border-right:1.5px solid var(--pink); border-top:1.5px solid var(--pink); transform:rotate(45deg);}
+.thanks .bubble{margin-bottom:70px; max-width:210px;}
 .res{padding:4px 16px 0;}
-.first{position:relative; border-radius:22px; padding:2px; background:var(--grad); box-shadow:0 14px 30px -16px rgba(185,139,234,.55);}
-.first .inner{background:#fffafc; border-radius:20px; padding:26px 20px 20px; text-align:center;}
-.first .rib{position:absolute; top:-12px; left:50%; transform:translateX(-50%); font-size:11px; font-weight:800; letter-spacing:.16em; color:#fff;
+.picked{position:relative; border-radius:22px; padding:2px; background:var(--grad); box-shadow:0 14px 30px -16px rgba(185,139,234,.55);}
+.picked .inner{background:#fffafc; border-radius:20px; padding:28px 16px 16px;}
+.picked .rib{position:absolute; top:-12px; left:50%; transform:translateX(-50%); font-size:11px; font-weight:800; letter-spacing:.14em; color:#fff;
   background:var(--grad-lav); border-radius:999px; padding:3px 16px 3px 17px; white-space:nowrap;}
-.first .inner b{display:block; font-size:18px; color:var(--plum2); line-height:1.8; letter-spacing:.02em;}
-.second{margin-top:12px; padding:14px 16px; display:flex; gap:10px; align-items:flex-start;}
-.second .no{flex:none; font-size:10.5px; font-weight:800; color:var(--pinkd); background:var(--pinkbg); border-radius:8px; padding:2px 9px; margin-top:2px;}
-.second b{font-size:13.5px; color:var(--plum2); line-height:1.8;}
+.picked .it{display:flex; gap:10px; align-items:flex-start; padding:10px 4px;}
+.picked .it + .it{border-top:1px dashed var(--line);}
+.picked .it .ck{flex:none; width:24px; height:24px; border-radius:999px; background:var(--grad); display:flex; align-items:center; justify-content:center; margin-top:3px;}
+.picked .it b{font-size:16px; color:var(--plum2); line-height:1.8;}
 .status{display:flex; align-items:center; justify-content:center; gap:6px; margin-top:14px; font-size:12px; font-weight:700; color:var(--blued);}
 .status.ng{color:var(--pinkd);}
 .status svg{flex:none;}
@@ -187,35 +166,31 @@ button{font-family:inherit;}
 .modal p{font-size:12px; color:var(--ink); margin-top:6px; line-height:1.8;}
 .modal .row{display:flex; gap:8px; margin-top:14px;}
 .modal .row .btn{font-size:14px; padding:13px;}
-.dbg{position:fixed; left:0; right:0; bottom:0; max-height:35vh; overflow:auto; z-index:2147483645; margin:0;
-  background:rgba(255,255,255,.96); border-top:2px solid var(--pink); font-size:10px; line-height:1.5; padding:8px; color:var(--plum2); white-space:pre-wrap; word-break:break-all;}
+.dbg{position:fixed; left:0; right:0; top:0; max-height:35vh; overflow:auto; z-index:2147483645; margin:0;
+  background:rgba(255,255,255,.96); border-bottom:2px solid var(--pink); font-size:10px; line-height:1.5; padding:8px; color:var(--plum2); white-space:pre-wrap; word-break:break-all;}
 
-@media (max-width:374px){
-  .flow{gap:6px;}
-  .flow .f{padding:12px 2px 10px;}
-  .flow b{font-size:10.5px; letter-spacing:0;}
-}
 @media (max-width:360px){
   .title h1{font-size:20px;}
-  .choice{font-size:16px; padding:22px 16px 18px;}
-  .stage img{height:176px;}
+  .opt{font-size:15px; padding:13px 12px; gap:10px;}
+  .stage img{height:150px;}
   .thanks img{height:160px;}
+  .bar .btn{font-size:14px;}
 }
 @media (prefers-reduced-motion:reduce){ *{transition:none !important; animation:none !important;} }
 </style>
 </head>
 <body>
-<div class="app">
+<div class="app withbar" id="app">
   <header class="hud">
     <img src="merone-logo.png?v=20261115a" alt="Merone">
     <span class="who">1分アンケート</span>
   </header>
 
-  <!-- ===== はじめ ===== -->
-  <main id="vIntro">
+  <!-- ===== えらぶ ===== -->
+  <main id="vPick">
     <div class="title">
       <div class="en">QUESTIONNAIRE</div>
-      <h1>どっちが<em>「いいな」</em>？</h1>
+      <h1>どれが<em>「いいな」</em>？</h1>
     </div>
     <div class="hero">
       <div class="card">
@@ -224,59 +199,30 @@ button{font-family:inherit;}
           <div class="msg">
             <p>いつもありがとうございます。</p>
             <p><span class="nw">いまMeroneでは、</span><wbr><span class="nw">これから</span><wbr><span class="nw">大切にしたい想いを</span><wbr><span class="nw">“ひとこと”に</span><wbr><span class="nw">まとめています。</span></p>
-            <p><span class="nw">候補が12個あるので、</span><wbr><span class="nw">みなさんが</span><wbr><span class="nw">ピンとくるものを</span><wbr><span class="nw">教えてください。</span></p>
+            <p><span class="nw">候補が12個あるので、</span><wbr><span class="nw">みなさんが</span><wbr><span class="nw">ピンとくるものを</span><wbr><span class="nw">2つ教えてください。</span></p>
             <div class="from">株式会社Merone 代表 森川公美子</div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="flow">
-      <div class="f"><div class="n">1</div><b><span class="nw">2つのことばが</span><br><span class="nw">出てきます</span></b><s>全部で11回</s></div>
-      <div class="f"><div class="n">2</div><b><span class="nw">ピンときた方を</span><br><span class="nw">タップ</span></b><s>直感でOK</s></div>
-      <div class="f"><div class="n">3</div><b><span class="nw">あなたの1位が</span><br><span class="nw">決まります</span></b><s>約1分</s></div>
-    </div>
-    <div class="chips"><i>正解はありません</i><i>読んだ瞬間の気持ちで</i><i>ひとつ前にも戻れます</i></div>
-
     <div class="stage">
-      <div class="bubble"><span class="nw">直感で</span><wbr><span class="nw">選んでもらえたら、</span><wbr><span class="nw">うれしいです</span></div>
+      <div class="bubble"><span class="nw">ピンときたものを、</span><wbr><span class="nw"><em>2つ</em>タップして</span><wbr><span class="nw">ください</span></div>
       <img src="chara.png?v=20261115a" alt="">
     </div>
-    <div class="cta">
-      <button class="btn" id="startBtn" type="button">はじめる</button>
-      <p class="note">お名前なしで回答できます</p>
-    </div>
+    <div class="chips"><i>正解はありません</i><i>直感でOK</i><i>あとから選び直せます</i></div>
+
+    <div class="list" id="list"></div>
   </main>
 
-  <!-- ===== 2択 ===== -->
-  <main id="vPlay" hidden>
-    <div class="prog"><div class="pill">
-      <span class="lbl" id="stageLbl">1回戦</span>
-      <div class="bar"><div class="fill" id="fill"></div></div>
-      <span class="cnt" id="cnt">1 / 11</span>
-    </div></div>
-    <div class="ask">
-      <div class="ava"><img src="avatar.jpg?v=20261115a" alt=""></div>
-      <div class="q"><b><span class="nw">ピンときたのは、</span><wbr><span class="nw">どっち？</span></b><span id="cheer">直感で大丈夫です</span></div>
-    </div>
-    <div class="duel">
-      <button class="choice a" id="cA" type="button"><span class="tag">A</span><span class="chk"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="stmt" id="tA"></span></button>
-      <div class="or"><i>or</i></div>
-      <button class="choice b" id="cB" type="button"><span class="tag">B</span><span class="chk"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="stmt" id="tB"></span></button>
-      <p class="hint"><span class="nw">迷ったら、</span><wbr><span class="nw">読んだ瞬間の気持ちで</span><wbr><span class="nw">選んでください</span></p>
-      <button class="back" id="backBtn" type="button" hidden>ひとつ前にもどる</button>
-    </div>
-  </main>
-
-  <!-- ===== 結果 ===== -->
+  <!-- ===== 送ったあと ===== -->
   <main id="vDone" hidden>
     <div class="thanks">
       <div class="bubble"><span class="nw">選んでくださって、</span><wbr><span class="nw">ありがとうございます！</span></div>
       <img src="chara.png?v=20261115a" alt="">
     </div>
     <div class="res">
-      <div class="first"><span class="rib">あなたの1位</span><div class="inner"><b class="stmt" id="r1"></b></div></div>
-      <div class="card second"><span class="no">2位</span><b class="stmt" id="r2"></b></div>
+      <div class="picked"><span class="rib">あなたが選んだ2つ</span><div class="inner" id="pickedList"></div></div>
       <div class="status" id="status"></div>
       <div class="card fail" id="failBox" hidden>
         <p><span class="nw">うまく送れなかったようです。</span><wbr><span class="nw">電波のよいところで、</span><wbr><span class="nw">もう一度お試しください。</span></p>
@@ -292,7 +238,7 @@ button{font-family:inherit;}
       <div class="card">
         <h2>よかったら、ひとことください<small>任意</small></h2>
         <div class="fld">
-          <label for="reason"><span class="nw">1位のことばの、</span><wbr><span class="nw">どんなところが</span><wbr><span class="nw">ピンときましたか？</span></label>
+          <label for="reason"><span class="nw">この2つの、</span><wbr><span class="nw">どんなところが</span><wbr><span class="nw">ピンときましたか？</span></label>
           <textarea id="reason" maxlength="1000" placeholder="ひとことでも大丈夫です"></textarea>
         </div>
         <div class="fld">
@@ -302,7 +248,7 @@ button{font-family:inherit;}
         <button class="btn" id="moreBtn" type="button">ひとことを送る</button>
         <div class="sent2" id="sent2" hidden></div>
       </div>
-      <button class="redo" id="redoBtn" type="button">最初から選び直す</button>
+      <button class="redo" id="redoBtn" type="button">選び直す</button>
     </div>
     <p class="foot"><span class="nw">いただいた回答は、</span><wbr><span class="nw">Meroneのことば選びの</span><wbr><span class="nw">参考にさせていただきます。</span></p>
   </main>
@@ -310,11 +256,20 @@ button{font-family:inherit;}
   <p class="foot" id="staticHelp"><span class="nw">うまく動かないときは、</span><wbr><span class="nw">Re:cheのLINEで</span><wbr><span class="nw">教えてください。</span></p>
   <button class="helpbtn" id="helpBtn" type="button">うまく動かないとき</button>
 </div>
+
+<div class="bar" id="bar">
+  <div class="in">
+    <div class="cnt"><b id="selN">0</b><span> / 2</span><small>えらんだ数</small></div>
+    <button class="btn" id="sendBtn" type="button" disabled>あと2つ選んでください</button>
+    <div class="warn" id="warn" hidden><span class="nw">選べるのは2つまでです。</span><wbr><span class="nw">どれかを外してから</span><wbr><span class="nw">選んでください</span></div>
+  </div>
+</div>
+
 <div class="modal" id="helpModal" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="helpTtl">
     <h3 id="helpTtl">うまく動かないときは、教えてください</h3>
     <p><span class="nw">どんなことが起きたか、</span><wbr><span class="nw">ひとことで大丈夫です。</span><wbr><span class="nw">届いた内容を見て</span><wbr><span class="nw">直します。</span></p>
-    <div class="fld"><textarea id="bugText" maxlength="2000" placeholder="例）ボタンを押しても次に進まない"></textarea></div>
+    <div class="fld"><textarea id="bugText" maxlength="2000" placeholder="例）ボタンを押しても送れない"></textarea></div>
     <div class="row">
       <button class="btn sub" id="bugClose" type="button">とじる</button>
       <button class="btn" id="bugSend" type="button">送る</button>
@@ -327,9 +282,9 @@ button{font-family:inherit;}
 (function(){
   'use strict';
   var GAS_URL = 'https://script.google.com/macros/s/AKfycbxS6R0lyOWGzJY2N647C7N7OpmJHoIGizJjdQ994fjebBD5aCOHXrVrZeesmcZmzyO1/exec';
-  var KEY = 'iijan_v1';
-  var TOTAL = 11;
-  // 「|」は改行してよい位置（文節の切れ目）。保存・集計には「|」を除いた原文を使う
+  var KEY = 'iijan_v2';
+  var NEED = 2;
+  // 「|」は改行してよい位置（文節の切れ目）。保存・集計には「|」を除いた原文を使う。番号(1〜12)はPDFの番号
   var ITEMS = [
     '女性の|“いいじゃん”を|リユースで|つくる会社',
     '頑張りたい|女性の|“いいじゃん”を|リユースで|つくる会社',
@@ -344,8 +299,7 @@ button{font-family:inherit;}
     'リユースを|通して、|家の中から|自分の|可能性を|広げたい|女性の|一歩を|つくる会社',
     '社会にも|家族にも|自分にも|“いいじゃん”を、|リユースで|つくる会社'
   ];
-  var STAGE = {1:'1回戦', 2:'2回戦', 3:'準決勝', 4:'決勝'};
-  var CHEER = {1:'直感で大丈夫です', 2:'2回戦です。いい調子です', 3:'準決勝です。あと2回で決まります', 4:'いよいよ決勝です'};
+  var CK = '<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.8" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   /* ---------- debug（?debug=1 で画面に表示） ---------- */
   var DEBUG = /[?&]debug=1/.test(location.search);
@@ -363,8 +317,8 @@ button{font-family:inherit;}
 
   function $(id){ return document.getElementById(id); }
   function plain(n){ return ITEMS[n-1].replace(/\|/g, ''); }
-  function putText(el, n){
-    while (el.firstChild) el.removeChild(el.firstChild);
+  function stmtEl(n, tag){
+    var el = document.createElement(tag || 'span'); el.className = 'stmt';
     var parts = ITEMS[n-1].split('|');
     for (var i = 0; i < parts.length; i++){
       if (i) el.appendChild(document.createElement('wbr'));
@@ -372,11 +326,13 @@ button{font-family:inherit;}
       sp.appendChild(document.createTextNode(parts[i]));
       el.appendChild(sp);
     }
+    return el;
   }
 
   /* ---------- 保存（端末内） ---------- */
+  function valid(s){ return s && s.rid && s.order && s.order.length === 12 && Array.isArray(s.picks); }
   function load(){
-    try{ var s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s && s.rid && s.order && s.order.length === 12) return s; }catch(e){ log('[load] ' + e); }
+    try{ var s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (valid(s)) return s; }catch(e){ log('[load] ' + e); }
     return null;
   }
   function save(){ try{ localStorage.setItem(KEY, JSON.stringify(st)); }catch(e){ log('[save] ' + e); } }
@@ -385,86 +341,83 @@ button{font-family:inherit;}
     return Math.floor(Math.random() * n);
   }
   function shuffle(a){ for (var i = a.length - 1; i > 0; i--){ var j = rnd(i + 1); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
-  function newRid(){ return 'r' + Date.now().toString(36) + rnd(1679616).toString(36); }
-  function newPlay(rid){
-    var flips = []; for (var i = 0; i < TOTAL; i++) flips.push(rnd(2));
-    return { rid: rid || newRid(), order: shuffle([1,2,3,4,5,6,7,8,9,10,11,12]), flips: flips, choices: [],
-             done: false, sent: '', name: '', reason: '', reasonSent: false };
+  function fresh(){
+    return { rid: 'r' + Date.now().toString(36) + rnd(1679616).toString(36),
+             order: shuffle([1,2,3,4,5,6,7,8,9,10,11,12]), picks: [], done: false, sent: '', name: '', reason: '' };
   }
 
-  /* ---------- トーナメント（12→6→3→準決勝→決勝＝11回） ---------- */
-  function sim(order, choices){
-    var log2 = [], i = 0;
-    function step(s, a, b){
-      if (i < choices.length){
-        var w = choices[i];
-        if (w !== a && w !== b) throw new Error('bad choice');
-        i++; log2.push({s:s, a:a, b:b, w:w}); return w;
-      }
-      return null;
+  /* ---------- えらぶ画面 ---------- */
+  var warnTimer = null;
+  function buildList(){
+    var box = $('list'); box.innerHTML = '';
+    st.order.forEach(function(n){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'opt'; b.setAttribute('data-n', n); b.setAttribute('aria-pressed', 'false');
+      var ck = document.createElement('span'); ck.className = 'ck'; ck.innerHTML = CK;
+      b.appendChild(ck); b.appendChild(stmtEl(n));
+      b.addEventListener('click', function(){ toggle(n, b); });
+      box.appendChild(b);
+    });
+    paint();
+  }
+  function paint(){
+    var opts = $('list').querySelectorAll('.opt');
+    for (var i = 0; i < opts.length; i++){
+      var on = st.picks.indexOf(Number(opts[i].getAttribute('data-n'))) >= 0;
+      opts[i].className = 'opt' + (on ? ' on' : '');
+      opts[i].setAttribute('aria-pressed', on ? 'true' : 'false');
     }
-    var r1 = [], r2 = [], k, w;
-    for (k = 0; k < 6; k++){ w = step(1, order[2*k], order[2*k+1]); if (w === null) return {next:{s:1, a:order[2*k], b:order[2*k+1]}, log:log2}; r1.push(w); }
-    for (k = 0; k < 3; k++){ w = step(2, r1[2*k], r1[2*k+1]); if (w === null) return {next:{s:2, a:r1[2*k], b:r1[2*k+1]}, log:log2}; r2.push(w); }
-    var sf = step(3, r2[0], r2[1]); if (sf === null) return {next:{s:3, a:r2[0], b:r2[1]}, log:log2};
-    var ch = step(4, sf, r2[2]); if (ch === null) return {next:{s:4, a:sf, b:r2[2]}, log:log2};
-    return {done:true, champion:ch, runnerUp:(ch === sf ? r2[2] : sf), log:log2};
+    var k = st.picks.length;
+    $('selN').textContent = k;
+    var btn = $('sendBtn');
+    btn.disabled = (k !== NEED);
+    btn.textContent = (k < NEED) ? ('あと' + (NEED - k) + 'つ選んでください') : 'この2つで送る';
   }
-  function state(){
-    try{ return sim(st.order, st.choices); }
-    catch(e){ log('[sim] ' + e + ' → reset'); st.choices = []; st.done = false; save(); return sim(st.order, st.choices); }
+  function hideWarn(){ clearTimeout(warnTimer); $('warn').hidden = true; $('sendBtn').hidden = false; }
+  function showWarn(){
+    $('sendBtn').hidden = true; $('warn').hidden = false;
+    clearTimeout(warnTimer);
+    warnTimer = setTimeout(hideWarn, 2600);
+  }
+  function toggle(n, el){
+    var i = st.picks.indexOf(n);
+    if (i >= 0){ st.picks.splice(i, 1); }
+    else if (st.picks.length < NEED){ st.picks.push(n); }
+    else {
+      showWarn();
+      el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake');
+      return;
+    }
+    hideWarn(); save(); paint();
   }
 
-  /* ---------- 画面 ---------- */
+  /* ---------- 画面切りかえ ---------- */
   function show(id){
-    ['vIntro','vPlay','vDone'].forEach(function(v){ $(v).hidden = (v !== id); });
+    $('vPick').hidden = (id !== 'vPick'); $('vDone').hidden = (id !== 'vDone');
+    $('bar').hidden = (id !== 'vPick');
+    $('app').className = 'app' + (id === 'vPick' ? ' withbar' : '');
     $('staticHelp').hidden = true;
     try{ window.scrollTo(0, 0); }catch(e){}
   }
-  var cur = null, busy = false;
-  function renderPlay(){
-    var s = state();
-    if (s.done){ finish(s); return; }
-    var n = s.next, idx = s.log.length;
-    var flip = st.flips[idx] === 1;
-    cur = { a: flip ? n.b : n.a, b: flip ? n.a : n.b };
-    $('stageLbl').textContent = STAGE[n.s];
-    $('cheer').textContent = CHEER[n.s];
-    $('cnt').textContent = (idx + 1) + ' / ' + TOTAL;
-    $('fill').style.width = Math.round(idx / TOTAL * 100) + '%';
-    putText($('tA'), cur.a); putText($('tB'), cur.b);
-    $('cA').className = 'choice a'; $('cB').className = 'choice b';
-    $('backBtn').hidden = (idx === 0);
-    busy = false;
-  }
-  function pick(which){
-    if (busy || !cur) return;
-    busy = true;
-    var w = which === 'a' ? cur.a : cur.b;
-    $('c' + (which === 'a' ? 'A' : 'B')).className += ' picked';
-    $('c' + (which === 'a' ? 'B' : 'A')).className += ' dim';
-    setTimeout(function(){
-      try{
-        st.choices.push(w); save();
-        var s = state();
-        if (s.done) finish(s); else renderPlay();
-      }catch(e){ log('[pick] ' + e); busy = false; }
-    }, 380);
-  }
-  function finish(s){
+  function finish(){
+    if (st.picks.length !== NEED) return;
     st.done = true; save();
-    putText($('r1'), s.champion); putText($('r2'), s.runnerUp);
+    var box = $('pickedList'); box.innerHTML = '';
+    st.picks.forEach(function(n){
+      var it = document.createElement('div'); it.className = 'it';
+      var ck = document.createElement('span'); ck.className = 'ck'; ck.innerHTML = CK;
+      it.appendChild(ck); it.appendChild(stmtEl(n, 'b'));
+      box.appendChild(it);
+    });
     $('reason').value = st.reason || ''; $('nm').value = st.name || '';
     show('vDone');
-    if (st.sent === 'ok') setStatus('ok'); else send(false);
+    if (st.sent === 'ok') setStatus('ok'); else send();
   }
 
   /* ---------- 送信（GAS→スプレッドシート・回答IDで上書き） ---------- */
   function payload(){
-    var s = state();
-    return { form:'iijan', v:1, rid: st.rid, name: st.name || '', reason: st.reason || '',
-             champion: s.champion || 0, runnerUp: s.runnerUp || 0, picks: s.log || [],
-             ua: (navigator.userAgent || '').slice(0, 300) };
+    return { form:'iijan', v:2, rid: st.rid, name: st.name || '', reason: st.reason || '',
+             picks: st.picks.slice(), order: st.order.slice(), ua: (navigator.userAgent || '').slice(0, 300) };
   }
   function post(obj){
     var body = JSON.stringify(obj);
@@ -480,12 +433,12 @@ button{font-family:inherit;}
           .catch(function(e2){ log('[post2] ' + e2); return 'ng'; });
       });
   }
-  var CHECK = '<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#8fbfe6"/><path d="M4.4 8.3l2.4 2.3 4.8-5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var OK = '<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#8fbfe6"/><path d="M4.4 8.3l2.4 2.3 4.8-5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   function setStatus(k){
     var el = $('status');
     el.className = 'status' + (k === 'ng' ? ' ng' : '');
     if (k === 'sending'){ el.textContent = '回答を送っています…'; }
-    else if (k === 'ok' || k === 'maybe'){ el.innerHTML = CHECK + '<span>回答が届きました</span>'; }
+    else if (k === 'ok' || k === 'maybe'){ el.innerHTML = OK + '<span>回答が届きました</span>'; }
     else { el.textContent = '回答を送れませんでした'; }
     $('failBox').hidden = (k !== 'ng');
   }
@@ -497,20 +450,19 @@ button{font-family:inherit;}
   }
   function sendMore(){
     st.reason = $('reason').value.trim(); st.name = $('nm').value.trim(); save();
-    if (!st.reason && !st.name){ $('sent2').hidden = false; $('sent2').textContent = '空欄のままでも大丈夫です'; return; }
+    var m = $('sent2'); m.hidden = false;
+    if (!st.reason && !st.name){ m.textContent = '空欄のままでも大丈夫です'; return; }
     var b = $('moreBtn'); b.disabled = true; b.textContent = '送っています…';
     post(payload()).then(function(r){
       b.disabled = false; b.textContent = 'ひとことを送る';
-      $('sent2').hidden = false;
-      if (r === 'ng'){ $('sent2').textContent = 'うまく送れませんでした。もう一度お試しください'; return; }
-      st.sent = r; st.reasonSent = true; save(); setStatus(r);
-      $('sent2').textContent = 'ひとことも届きました。ありがとうございます';
+      if (r === 'ng'){ m.textContent = 'うまく送れませんでした。もう一度お試しください'; return; }
+      st.sent = r; save(); setStatus(r);
+      m.textContent = 'ひとことも届きました。ありがとうございます';
     });
   }
   function summaryText(){
-    var s = state();
-    return '【Merone 会社の方向性アンケート】\n1位：' + (s.champion ? plain(s.champion) : '') +
-      '\n2位：' + (s.runnerUp ? plain(s.runnerUp) : '') +
+    return '【Merone 会社の方向性アンケート】\n選んだことば\n' +
+      st.picks.map(function(n){ return '・' + plain(n); }).join('\n') +
       (st.reason ? '\nひとこと：' + st.reason : '') + (st.name ? '\nお名前：' + st.name : '') +
       '\n（回答ID：' + st.rid + '）';
   }
@@ -546,31 +498,28 @@ button{font-family:inherit;}
   /* ---------- 起動 ---------- */
   var st = null;
   try{
-    st = load() || newPlay();
+    st = load() || fresh();
+    st.picks = st.picks.filter(function(n, i, a){ return n >= 1 && n <= 12 && a.indexOf(n) === i; }).slice(0, NEED);
     save();
-    $('startBtn').addEventListener('click', function(){ show('vPlay'); renderPlay(); });
-    $('cA').addEventListener('click', function(){ pick('a'); });
-    $('cB').addEventListener('click', function(){ pick('b'); });
-    $('backBtn').addEventListener('click', function(){ if (busy) return; st.choices.pop(); save(); renderPlay(); });
+    buildList();
+    $('sendBtn').addEventListener('click', function(){ if (st.picks.length === NEED) finish(); });
     $('retryBtn').addEventListener('click', function(){ send(); });
     $('copyBtn').addEventListener('click', function(){ copy(summaryText()); });
     $('moreBtn').addEventListener('click', sendMore);
     $('redoBtn').addEventListener('click', function(){
-      var keep = { name: st.name, reason: st.reason };
-      st = newPlay(st.rid); st.name = keep.name; st.reason = keep.reason; save();
-      $('sent2').hidden = true; show('vPlay'); renderPlay();
+      st.done = false; st.sent = ''; save();
+      $('sent2').hidden = true; show('vPick'); paint();
     });
     $('helpBtn').addEventListener('click', openHelp);
     $('bugClose').addEventListener('click', closeHelp);
     $('bugSend').addEventListener('click', sendBug);
     $('helpModal').addEventListener('click', function(e){ if (e.target === $('helpModal')) closeHelp(); });
 
-    if (st.done){ var s0 = state(); if (s0.done) finish(s0); }
-    else if (st.choices.length){ show('vPlay'); renderPlay(); }
-    log('boot ok rid=' + st.rid + ' choices=' + st.choices.length);
+    if (st.done && st.picks.length === NEED) finish(); else { st.done = false; show('vPick'); }
+    log('boot ok rid=' + st.rid + ' picks=' + st.picks.join(','));
   }catch(e){
     log('[boot] ' + e);
-    try{ show('vIntro'); $('staticHelp').hidden = false; }catch(e2){}
+    try{ $('staticHelp').hidden = false; }catch(e2){}
   }
 })();
 </script>
