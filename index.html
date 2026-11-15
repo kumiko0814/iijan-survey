@@ -96,6 +96,20 @@ button{font-family:inherit;}
 .opt.shake{animation:shake .32s;}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 
+/* LINE名 */
+.namebox{padding:18px 16px 0;}
+.namebox .card{padding:18px 16px 16px;}
+.namebox label{display:block; font-size:14px; font-weight:800; color:var(--plum2); line-height:1.7;}
+.namebox .req{display:inline-block; font-size:10px; font-weight:800; color:#fff; background:var(--grad); border-radius:999px; padding:1px 9px; margin-left:6px; vertical-align:2px; letter-spacing:.06em;}
+.namebox .h{font-size:11px; color:var(--sub); margin-top:2px;}
+.namebox input{width:100%; border:1.5px solid var(--line); background:#fffdfd; border-radius:13px;
+  padding:12px 13px; font-size:16px; line-height:1.6; color:var(--ink); font-family:inherit; margin-top:8px;
+  -webkit-appearance:none; appearance:none;}
+.namebox input:focus{outline:none; border-color:var(--pink); box-shadow:0 0 0 3px rgba(240,162,197,.18);}
+.namebox input::placeholder{color:#c9bcc4;}
+.namebox.need input{border-color:var(--pinkd); box-shadow:0 0 0 3px rgba(198,111,150,.15);}
+.namebox .err{font-size:12px; font-weight:800; color:var(--pinkd); margin-top:6px;}
+
 /* bottom bar */
 .bar{position:fixed; left:0; right:0; bottom:0; z-index:30; display:flex; justify-content:center;
   background:rgba(255,255,255,.96); border-top:1px solid var(--line); box-shadow:0 -10px 24px -18px rgba(87,74,88,.45);}
@@ -213,6 +227,15 @@ button{font-family:inherit;}
     <div class="chips"><i>正解はありません</i><i>直感でOK</i><i>あとから選び直せます</i></div>
 
     <div class="list" id="list"></div>
+
+    <div class="namebox" id="nameBox">
+      <div class="card">
+        <label for="lineName"><span class="nw">最後に、</span><wbr><span class="nw">LINEのお名前を</span><wbr><span class="nw">教えてください</span><span class="req">必須</span></label>
+        <p class="h"><span class="nw">ご回答の確認にだけ</span><wbr><span class="nw">使わせていただきます</span></p>
+        <input id="lineName" type="text" maxlength="60" autocomplete="nickname" enterkeyhint="done" placeholder="LINEに表示されているお名前">
+        <p class="err" id="nameErr" hidden>LINEのお名前を入れてください</p>
+      </div>
+    </div>
   </main>
 
   <!-- ===== 送ったあと ===== -->
@@ -240,10 +263,6 @@ button{font-family:inherit;}
         <div class="fld">
           <label for="reason"><span class="nw">この2つの、</span><wbr><span class="nw">どんなところが</span><wbr><span class="nw">ピンときましたか？</span></label>
           <textarea id="reason" maxlength="1000" placeholder="ひとことでも大丈夫です"></textarea>
-        </div>
-        <div class="fld">
-          <label for="nm">お名前 <span class="h">（空欄でも大丈夫です）</span></label>
-          <input id="nm" type="text" maxlength="60" autocomplete="name" placeholder="LINEのお名前など">
         </div>
         <button class="btn" id="moreBtn" type="button">ひとことを送る</button>
         <div class="sent2" id="sent2" hidden></div>
@@ -409,7 +428,7 @@ button{font-family:inherit;}
       it.appendChild(ck); it.appendChild(stmtEl(n, 'b'));
       box.appendChild(it);
     });
-    $('reason').value = st.reason || ''; $('nm').value = st.name || '';
+    $('reason').value = st.reason || '';
     show('vDone');
     if (st.sent === 'ok') setStatus('ok'); else send();
   }
@@ -449,9 +468,9 @@ button{font-family:inherit;}
     });
   }
   function sendMore(){
-    st.reason = $('reason').value.trim(); st.name = $('nm').value.trim(); save();
+    st.reason = $('reason').value.trim(); save();
     var m = $('sent2'); m.hidden = false;
-    if (!st.reason && !st.name){ m.textContent = '空欄のままでも大丈夫です'; return; }
+    if (!st.reason){ m.textContent = '空欄のままでも大丈夫です'; return; }
     var b = $('moreBtn'); b.disabled = true; b.textContent = '送っています…';
     post(payload()).then(function(r){
       b.disabled = false; b.textContent = 'ひとことを送る';
@@ -461,9 +480,9 @@ button{font-family:inherit;}
     });
   }
   function summaryText(){
-    return '【Merone 会社の方向性アンケート】\n選んだことば\n' +
+    return '【Merone 会社の方向性アンケート】\nLINE名：' + (st.name || '') + '\n選んだことば\n' +
       st.picks.map(function(n){ return '・' + plain(n); }).join('\n') +
-      (st.reason ? '\nひとこと：' + st.reason : '') + (st.name ? '\nお名前：' + st.name : '') +
+      (st.reason ? '\nひとこと：' + st.reason : '') +
       '\n（回答ID：' + st.rid + '）';
   }
   function copy(txt){
@@ -502,7 +521,22 @@ button{font-family:inherit;}
     st.picks = st.picks.filter(function(n, i, a){ return n >= 1 && n <= 12 && a.indexOf(n) === i; }).slice(0, NEED);
     save();
     buildList();
-    $('sendBtn').addEventListener('click', function(){ if (st.picks.length === NEED) finish(); });
+    $('lineName').value = st.name || '';
+    $('lineName').addEventListener('input', function(){
+      st.name = $('lineName').value.trim(); save();
+      if (st.name){ $('nameErr').hidden = true; $('nameBox').className = 'namebox'; }
+    });
+    $('sendBtn').addEventListener('click', function(){
+      if (st.picks.length !== NEED) return;
+      st.name = $('lineName').value.trim(); save();
+      if (!st.name){
+        $('nameErr').hidden = false; $('nameBox').className = 'namebox need';
+        try{ $('nameBox').scrollIntoView({ behavior: 'smooth', block: 'center' }); }catch(e){ $('nameBox').scrollIntoView(); }
+        try{ $('lineName').focus({ preventScroll: true }); }catch(e){ $('lineName').focus(); }
+        return;
+      }
+      finish();
+    });
     $('retryBtn').addEventListener('click', function(){ send(); });
     $('copyBtn').addEventListener('click', function(){ copy(summaryText()); });
     $('moreBtn').addEventListener('click', sendMore);
